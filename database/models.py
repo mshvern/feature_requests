@@ -1,7 +1,25 @@
 import datetime
 
 from sqlalchemy import Column, Integer, String, Text, ForeignKey, Date
-from .database import Base
+from .core import Base
+
+
+class Client(Base):
+    __tablename__ = 'client'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(64))
+
+    def __init__(self, name: str):
+        self.name = name
+
+
+class ProductArea(Base):
+    __tablename__ = 'product_area'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(64))
+
+    def __init__(self, name: str):
+        self.name = name
 
 
 class FeatureRequest(Base):
@@ -26,22 +44,14 @@ class FeatureRequest(Base):
         self.product_area_id = product_area_id
 
     def __repr__(self) -> str:
-        return f'<FeatureRequest {self.id}>'
+        return f'<FeatureRequest {self.title} - #{self.client_priority}>'
 
-
-class Client(Base):
-    __tablename__ = 'client'
-    id = Column(Integer, primary_key=True)
-    name = Column(String(64))
-
-    def __init__(self, name: str):
-        self.name = name
-
-
-class ProductArea(Base):
-    __tablename__ = 'product_area'
-    id = Column(Integer, primary_key=True)
-    name = Column(String(64))
-
-    def __init__(self, name: str):
-        self.name = name
+    def to_camel_case_dict(self) -> dict:
+        return {
+            'title': self.title,
+            'date': self.target_date.strftime("%Y-%m-%d"),
+            'client': Client.query.get(self.client_id).name,
+            'clientPriority': self.client_priority,
+            'productArea': ProductArea.query.get(self.product_area_id).name,
+            'description': self.description
+        }

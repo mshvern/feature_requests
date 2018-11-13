@@ -48,6 +48,7 @@ class FeatureRequest(Base):
 
     def to_camel_case_dict(self) -> dict:
         return {
+            'id': self.id,
             'title': self.title,
             'date': self.target_date.strftime("%Y-%m-%d"),
             'client': Client.query.get(self.client_id).name,

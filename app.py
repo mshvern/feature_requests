@@ -1,6 +1,6 @@
 import secrets
 
-from flask import Flask, render_template, flash, jsonify
+from flask import Flask, render_template, flash, jsonify, request
 from .database import db_session
 from .forms import FeatureRequestForm
 from .database.models import FeatureRequest, Client, ProductArea
@@ -19,7 +19,7 @@ def shutdown_session(exception=None):
 
 
 def resort_feature_requests(new_priority: int, client_id: int) -> int:
-    client_feature_requests = FeatureRequest.query.filter(
+    client_feature_requests: List[FeatureRequest] = FeatureRequest.query.filter(
         FeatureRequest.client_id == client_id).order_by(FeatureRequest.client_priority).all()
 
     if len(client_feature_requests) == 0:
@@ -62,8 +62,13 @@ def index():
 
 @app.route('/list', methods=['GET'])
 def list_feature_requests():
-    feature_requests: List[FeatureRequest] = FeatureRequest.query.order_by(FeatureRequest.client_priority).all()
-    return jsonify([request.to_camel_case_dict() for request in feature_requests])
+    limit = request.args.get('limit')
+    offset = request.args.get('offset')
+    feature_requests: List[FeatureRequest] = FeatureRequest.query.order_by(FeatureRequest.client_priority).limit(limit).offset(offset).all()
+    return jsonify({
+        "count": FeatureRequest.query.count(),
+        "data": [fr.to_camel_case_dict() for fr in feature_requests]
+    })
 
 
 if __name__ == '__main__':

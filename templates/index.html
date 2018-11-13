@@ -45,6 +45,14 @@
     </form>
     <div id="list">
     </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <button class="btn btn-primary" id="prev">&lt;&lt;</button>
+        </div>
+        <div class="col-sm-1 col-sm-offset-9">
+            <button class="btn btn-primary" id="next">&gt;&gt;</button>
+        </div>
+    </div>
 </div>
 <!-- Latest compiled and minified jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -72,12 +80,59 @@
             </div>
         </div>
     <script>
-        displayFlash()
+        api.displayFlash()
     </script>
     {% endif %}
 {% endwith %}
+<script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+<script id='ajaxTemplate' type='text/x-jquery-tmpl'>
+<div class='row'>
+    <div class='col-sm-4'>
+        ${title}
+    </div>
+    <div class='col-sm-2'>
+        ${date}
+    </div>
+    <div class='col-sm-2'>
+        ${client}
+    </div>
+    <div class='col-sm-1'>
+        ${clientPriority}
+    </div>
+    <div class='col-sm-2'>
+        ${productArea}
+    </div>
+    <div class='col-sm-1'>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal${id}">info</button>
+        </button>
+    </div>
+</div>
+<div class="modal fade" id="modal${id}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Feature Request Info</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <b>Title: </b> ${title} </br>
+                <b>Description: </b> ${description} </br>
+                <b>Client Name: </b> ${client} </br>
+                <b>Client Priority: </b> ${clientPriority} </br>
+                <b>Product Area: </b> ${productArea} </br>
+                <b>Target Date: </b> ${date}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
 <script>
-    initList("{{ url_for('list_feature_requests') }}", "list")
+    api.initList("{{ url_for('list_feature_requests') }}", "list")
 </script>
 </body>
 </html>

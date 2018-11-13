@@ -1,9 +1,9 @@
 import secrets
 
 from flask import Flask, render_template, flash, jsonify, request
-from .database import db_session
-from .forms import FeatureRequestForm
-from .database.models import FeatureRequest, Client, ProductArea
+from database import db_session
+from forms import FeatureRequestForm
+from database.models import FeatureRequest, Client, ProductArea
 
 from typing import List
 

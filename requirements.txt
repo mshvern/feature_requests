@@ -3,3 +3,4 @@ Flask-WTF==0.14.2
 SQLAlchemy==1.2.14
 Flask==1.0.2
 gunicorn==19.9.0
+mimesis==2.1.0

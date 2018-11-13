@@ -11,4 +11,4 @@ class FeatureRequestForm(FlaskForm):
     client_priority = IntegerField('Client Priority', validators=[DataRequired(), NumberRange(min=1)])
     target_date = DateField('Target Date', validators=[DataRequired()])
     product_area = SelectField('Product Area', validators=[DataRequired()], coerce=int)
-    submit = SubmitField('Send')
+    submit = SubmitField('Send a New Feature Request')

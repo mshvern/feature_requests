@@ -1,5 +1,5 @@
-#Feature Requests App
-###Core Stack
+# Feature Requests App
+### Core Stack
 * Flask
 * SQLAlchemy
 * jQuery
@@ -15,7 +15,7 @@ When it comes to testing, the approach was fairly standard, utilizing stdlib's u
 Ultimately, all the core dependencies were established for a single reason - fast development process.
 
 
-###Deployment
+### Deployment
 To easily make this deployment automated, Heroku was chosen as a cloud platform. Since Heroku natively supports WSGIs, nginx was managed to be avoided and as a result, only gunicorn needed to be configured (which happens in Procfile).  
 
 The project itself is very quick to set-up (provided you have heroku-cli installed and are logged in).
@@ -30,7 +30,7 @@ After executing these commands, you can access the application via a url that wa
     
     heroku open
     
-###Running a Development Server and Tests
+### Running a Development Server and Tests
 Clone this repository and create a virtualenv in your location of choice. After activating the environment, install the dependencies: 
 
     pip install -r requirements.txt
@@ -47,7 +47,7 @@ To run tests, execute the following command in your terminal:
 
     python -m nose
 
-####Ideas On Future Development
+#### Ideas On Future Development
 * Make the layout of the main page responsive and mobile-friendly
 * Ideally, utilize npm and bower to manage Javascript dependencies, instead of linking CDNs
 * Utilize a framework instead of relying on jQuery Templates

@@ -18,9 +18,13 @@ def shutdown_session(exception=None):
     db_session.remove()
 
 
-def resort_feature_requests(new_priority: int, client_id: int) -> int:
-    client_feature_requests: List[FeatureRequest] = FeatureRequest.query.filter(
+def get_all_feature_requests_by_client_id(client_id: int) -> List[FeatureRequest]:
+    return FeatureRequest.query.filter(
         FeatureRequest.client_id == client_id).order_by(FeatureRequest.client_priority).all()
+
+
+def resort_feature_requests(new_priority: int, client_id: int) -> int:
+    client_feature_requests: List[FeatureRequest] = get_all_feature_requests_by_client_id(client_id)
 
     if len(client_feature_requests) == 0:
         return 1

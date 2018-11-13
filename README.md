@@ -4,7 +4,7 @@
 * SQLAlchemy
 * jQuery
 * Bootstrap
-###Development Approach
+### Development Approach
 The first thing that needs to be decided when creating an MVP is a core tech stack to be used.
 
 Flask was chosen as a framework because of it's simplicity and extensive documentation. Therefore, SQLAlchemy followed as the most popular way to provide a powerful and developer-friendly ORM. Bootstrap was chosen for its ease of integration, color-coded buttons, and simple yet powerful grid layout. 

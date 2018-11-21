@@ -36,6 +36,8 @@ Clone this repository and create a virtualenv in your location of choice. After 
 
     pip install -r requirements.txt
     
+To set up your database of choice, all you need to do is the environment variable `DATABASE_URL` to your db uri, e.g. `sqlite:////tmp/feature_requests.db`
+ 
 After this, you should launch a script dedicated to database setup.
 
     python -m database.setup_database

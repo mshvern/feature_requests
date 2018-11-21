@@ -23,6 +23,7 @@ The project itself is very quick to set-up (provided you have heroku-cli install
 In your terminal (tested on Ubuntu):
     
     heroku create
+    heroku addons:add heroku-postgresql:hobby-dev
     git push heroku master
     heroku ps:scale web=1
       

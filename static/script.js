@@ -1,5 +1,5 @@
 let api = (function () {
-    let limit = 5
+    let limit = 10
     let offset = 0
     let count = 0
     let apiUrl;

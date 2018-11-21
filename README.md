@@ -37,7 +37,7 @@ Clone this repository and create a virtualenv in your location of choice. After 
     
 After this, you should launch a script dedicated to database setup.
 
-    python -m database.database_setup
+    python -m database.setup_database
 
 After the database setup is finished and mock data is generated, you can now run a development server.
 
